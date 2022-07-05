@@ -1,7 +1,7 @@
 import React from "react";
 import 'antd/dist/antd.css';
-import { Radio, Divider, Table, Button, Popconfirm, Typography } from "antd";
-
+import {  Divider, Table, Button, Popconfirm } from "antd";
+import { useState } from "react";
 const columns = [
     {
       title: 'Name',
@@ -46,13 +46,36 @@ const columns = [
                 console.log(data);
                 localStorage.setItem('user', JSON.stringify(data));
                 
-                    window.location.reload(false);
+                    window.location.reload(true);
                   
             };
-           
+    
+     
 function Home() {
+const [count , setCount] = useState(2);
+const handleAdd = () => {
+  const newData = {
+    name: `Edward King ${count}`,
+    email: `admin${count}@gmail.com`,
+    password: `London, Park Lane no. ${count}`,
+  };
+  setCount(count +1);
+ const user = [...data, newData];
+ localStorage.setItem('user', JSON.stringify(user));
+ window.location.reload(true);
+};
   return (
     <div>
+      <Button
+        onClick={handleAdd}
+        type="primary"
+        style={{
+          margin: 20,
+        }}
+      >
+        Add a row
+      </Button>
+      
       <Divider />
 
       <Table
