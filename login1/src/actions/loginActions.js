@@ -1,9 +1,9 @@
-export const setLoginStatus = (uname, upass) =>{
-    return{
-        type: "LOGIN",
+export const setLoginStatus = (uname, upass) => (dispatch) =>{
+dispatch({
+    type: "LOGIN",
         payload:{
-            uname: "admin",
-            upass: "123"
+            name: uname,
+            password: upass
         }
-    }
+})
 }

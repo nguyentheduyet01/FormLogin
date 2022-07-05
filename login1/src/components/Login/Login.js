@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import './Login.css';
 import {  Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import {setLoginStatus} from '../../actions/loginActions'
 
 const Login = () => {
     const [loginEmail, setLoginEmail] = useState('');
@@ -62,6 +64,9 @@ const Login = () => {
     const navigate = useNavigate();
     const loginSubmit = (e) => {
         e.preventDefault();
+        const dispatch = useDispatch
+
+        dispatch(setLoginStatus(name[0], password[0]))
         console.log(loginEmail);
 
         const data = localStorage.getItem('user')
