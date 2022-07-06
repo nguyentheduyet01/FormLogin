@@ -1,32 +1,29 @@
-const user =[{
-    username:'sizzan',
-    email: 'sizzan@gmail.com',
-    password: '123'
-},
-{
-    username:'sizzan2',
-    email: 'sizzan2@gmail.com',
-    password: '123'
+import {createSlice} from '@reduxjs/toolkit'
+// const rootReducer = combineReducers({
+//     login:LoginComponent
+// })
+
+let user = [{
+    name: "nguyen The Duyet",
+    email: "theduyet@gmail.com",
+    password: "1234"
 }]
-const LoginComponent = (state= user, action) => {
-    switch (action.type) {
-      case "LOGIN":
-          return state.map(user => {
-              if (user.username !== action.password) {
-                  return user;
-              }
+const loginstore = createSlice({
+    name: 'loginstore',
+    initialState:'',
+    reducers:{
+        increase: (state = user,action) => {    
+                    const acc = [{name: "abc", email: action.payload[0].email, password: action.payload[0].password}]
+                user = [...user,acc];
+                console.log(user);
+                return state;
+            },
+        decrease : (state, action) => { //action decrease
+            return state;
+        },
+    }
+})
 
-              if (user.password === action.password) {
-                  return {
-                      ...state,
-                      login_status: "LOGGED IN"
-                  }
-              }
-          });
-          
-      default:
-          return state;
-      } 
-};
-
-export {LoginComponent}
+const { actions, reducer } = loginstore
+export const {increase, decrease} = actions // export action
+export default reducer 
